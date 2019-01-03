@@ -17,7 +17,11 @@
         "qlimix/encoding": "dev-master",
         "ext-json": "*"
     },
+    "require-dev": {
+        "qlimix/dependency-container": "dev-master"
+    },
     "suggest": {
+        "qlimix/dependency-container": "Encoding json providers"
     },
     "config": {
         "sort-packages": true
@@ -26,6 +30,10 @@
         {
             "type": "vcs",
             "url": "git@bitbucket.org:qlimix/encoding.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@bitbucket.org:qlimix/dependency-container.git"
         }
     ],
     "minimum-stability": "dev",
