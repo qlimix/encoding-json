@@ -2,25 +2,24 @@
 
 namespace Qlimix\Encoding\Providers;
 
-use Psr\Container\ContainerInterface;
-use Qlimix\DependencyContainer\DependencyProviderInterface;
-use Qlimix\DependencyContainer\DependencyRegistryInterface;
+use Qlimix\DependencyContainer\ProviderInterface;
+use Qlimix\DependencyContainer\RegistryInterface;
 use Qlimix\Encoding\Decode\DecodeInterface;
 use Qlimix\Encoding\Decode\JsonDecode;
 use Qlimix\Encoding\Encode\EncodeInterface;
 
-final class JsonEncodingProvider implements DependencyProviderInterface
+final class JsonEncodingProvider implements ProviderInterface
 {
     /**
      * @inheritDoc
      */
-    public function provide(DependencyRegistryInterface $registry): void
+    public function provide(RegistryInterface $registry): void
     {
-        $registry->set(EncodeInterface::class, static function (ContainerInterface $container) {
+        $registry->set(EncodeInterface::class, static function () {
             return new JsonDecode();
         });
 
-        $registry->set(DecodeInterface::class, static function (ContainerInterface $container) {
+        $registry->set(DecodeInterface::class, static function () {
             return new JsonDecode();
         });
     }
