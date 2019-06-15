@@ -1,50 +1,41 @@
 {
     "name": "qlimix/encoding-json",
-    "type": "package",
-    "license": "LGPL-3.0-only",
+    "type": "library",
+    "description": "Encoding & decoding array's to string and vice versa",
+    "license": "MIT",
+    "keywords": [
+        "qlimix",
+        "encoding",
+        "decoding",
+        "decode",
+        "encode",
+        "json"
+    ],
     "authors": [
         {
             "name": "frank",
             "email": "frank@qlimix.net"
         }
     ],
+    "require": {
+        "ext-json": "*",
+        "php": ">=7.2",
+        "qlimix/encoding": "^1.0"
+    },
     "autoload": {
         "psr-4": {
             "Qlimix\\Encoding\\": "src/"
         }
     },
-    "require": {
-        "qlimix/encoding": "dev-master",
-        "ext-json": "*"
-    },
-    "require-dev": {
-        "qlimix/code-standard": "dev-master",
-        "qlimix/dependency-container": "dev-master"
-    },
-    "suggest": {
-        "qlimix/dependency-container": "Encoding json providers"
+    "autoload-dev": {
+        "psr-4": {
+            "Qlimix\\Tests\\Encoding\\": "tests/"
+        }
     },
     "config": {
         "sort-packages": true
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "git@bitbucket.org:qlimix/codesniffer-standard.git"
-        },
-        {
-            "type": "vcs",
-            "url": "git@bitbucket.org:qlimix/code-standard.git"
-        },
-        {
-            "type": "vcs",
-            "url": "git@bitbucket.org:qlimix/encoding.git"
-        },
-        {
-            "type": "vcs",
-            "url": "git@bitbucket.org:qlimix/dependency-container.git"
-        }
-    ],
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    "require-dev": {
+        "qlimix/code-standard": "^1.0"
+    }
 }
