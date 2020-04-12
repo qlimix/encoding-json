@@ -8,27 +8,20 @@ use Qlimix\Encoding\Decode\JsonDecode;
 
 final class JsonDecodeTest extends TestCase
 {
-    /** @var JsonDecode */
-    private $jsonDecode;
+    private JsonDecode $jsonDecode;
 
     public function setUp(): void
     {
         $this->jsonDecode = new JsonDecode();
     }
 
-    /**
-     * @test
-     */
-    public function shouldDecode(): void
+    public function testShouldDecode(): void
     {
         $this->jsonDecode->decode('{"foo":"bar"}');
         $this->addToAssertionCount(1);
     }
 
-    /**
-     * @test
-     */
-    public function shouldThrowOnJsonDecodeError(): void
+    public function testShouldThrowOnJsonDecodeError(): void
     {
         $this->expectException(DecodeException::class);
 

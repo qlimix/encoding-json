@@ -8,27 +8,20 @@ use Qlimix\Encoding\Encode\JsonEncode;
 
 final class JsonEncodeTest extends TestCase
 {
-    /** @var JsonEncode */
-    private $jsonEncode;
+    private JsonEncode $jsonEncode;
 
     public function setUp(): void
     {
         $this->jsonEncode = new JsonEncode();
     }
 
-    /**
-     * @test
-     */
-    public function shouldEncode(): void
+    public function testShouldEncode(): void
     {
         $this->jsonEncode->encode(['foo'=>'bar']);
         $this->addToAssertionCount(1);
     }
 
-    /**
-     * @test
-     */
-    public function shouldThrowOnJsonEncodeError(): void
+    public function testShouldThrowOnJsonEncodeError(): void
     {
         $this->expectException(EncodeException::class);
 
