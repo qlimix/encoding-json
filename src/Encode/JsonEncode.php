@@ -3,17 +3,15 @@
 namespace Qlimix\Encoding\Encode;
 
 use Qlimix\Encoding\Encode\Exception\EncodeException;
+use Throwable;
 use function json_encode;
-use function json_last_error;
-use const JSON_ERROR_NONE;
+use const JSON_THROW_ON_ERROR;
 
 final class JsonEncode implements EncodeInterface
 {
-    /** @var int */
-    private $options;
+    private int $options;
 
-    /** @var int */
-    private $depth;
+    private int $depth;
 
     public function __construct(int $options = 0, int $depth = 512)
     {
@@ -26,17 +24,10 @@ final class JsonEncode implements EncodeInterface
      */
     public function encode(array $message): string
     {
-        $json = json_encode($message, $this->options, $this->depth);
-
-        if ($json === false) {
-            throw new EncodeException('Failed to decode json');
+        try {
+            return json_encode($message, JSON_THROW_ON_ERROR | $this->options, $this->depth);
+        } catch (Throwable $exception) {
+            throw new EncodeException('Failed to decode json', 0, $exception);
         }
-
-        $error = json_last_error();
-        if ($error !== JSON_ERROR_NONE) {
-            throw new EncodeException('Failed to decode json (error number '.$error.')');
-        }
-
-        return $json;
     }
 }

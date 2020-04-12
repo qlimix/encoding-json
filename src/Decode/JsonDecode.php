@@ -3,24 +3,18 @@
 namespace Qlimix\Encoding\Decode;
 
 use Qlimix\Encoding\Decode\Exception\DecodeException;
+use Throwable;
 use function json_decode;
-use function json_last_error;
-use const JSON_ERROR_NONE;
+use const JSON_THROW_ON_ERROR;
 
 final class JsonDecode implements DecodeInterface
 {
-    /** @var bool */
-    private $assoc;
+    private int $depth;
 
-    /** @var int */
-    private $depth;
+    private int $options;
 
-    /** @var int */
-    private $options;
-
-    public function __construct(bool $assoc = true, int $depth = 512, int $options = 0)
+    public function __construct(int $depth = 512, int $options = 0)
     {
-        $this->assoc = $assoc;
         $this->depth = $depth;
         $this->options = $options;
     }
@@ -30,13 +24,10 @@ final class JsonDecode implements DecodeInterface
      */
     public function decode(string $message): array
     {
-        $json = json_decode($message, $this->assoc, $this->depth, $this->options);
-
-        $error = json_last_error();
-        if ($error !== JSON_ERROR_NONE) {
-            throw new DecodeException('Failed to decode json (error number '.$error.')');
+        try {
+            return json_decode($message, true, $this->depth, JSON_THROW_ON_ERROR | $this->options);
+        } catch (Throwable $exception) {
+            throw new DecodeException('Failed to decode json', 0, $exception);
         }
-
-        return $json;
     }
 }
