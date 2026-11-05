@@ -1,5 +1,7 @@
 # Encoding-json
 
+> **Archived:** this package is no longer maintained.
+
 [![Travis CI](https://api.travis-ci.org/qlimix/encoding-json.svg?branch=master)](https://travis-ci.org/qlimix/encoding-json)
 [![Coveralls](https://img.shields.io/coveralls/github/qlimix/encoding-json.svg)](https://coveralls.io/github/qlimix/encoding-json)
 [![Packagist](https://img.shields.io/packagist/v/qlimix/encoding-json.svg)](https://packagist.org/packages/qlimix/encoding-json)
